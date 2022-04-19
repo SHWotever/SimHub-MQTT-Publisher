@@ -10,10 +10,10 @@ namespace SimHub.MQTTPublisher.Payload
     public class PayloadRoot
     {
         
-        public PayloadRoot(GameData data)
+        public PayloadRoot(GameData data, SimHubMQTTPublisherPluginUserSettings userSettings)
         {
             time = DateTimeOffset.Now.ToUnixTimeSeconds();
-            vehicleInformation = new VehicleInformation(data);
+            vehicleInformation = new VehicleInformation(data, userSettings);
             carState = new CarState(data);
             motionAndDeviceRelated = new MotionAndDeviceRelated(data);
 

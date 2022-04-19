@@ -1,4 +1,6 @@
-﻿namespace SimHub.MQTTPublisher
+﻿using System;
+
+namespace SimHub.MQTTPublisher
 {
     /// <summary>
     /// Settings class, make sure it can be correctly serialized using JSON.net
@@ -12,5 +14,11 @@
         public string Login { get; set; } = "admin";
 
         public string Password { get; set; } = "admin";
+    }
+
+    public class SimHubMQTTPublisherPluginUserSettings
+    {
+        public Guid UserId { get; set; } = Guid.NewGuid();
+
     }
 }

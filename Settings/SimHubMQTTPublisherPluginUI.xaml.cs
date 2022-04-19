@@ -18,7 +18,8 @@ namespace SimHub.MQTTPublisher.Settings
                 Server = simHubMQTTPublisherPlugin.Settings.Server,
                 Topic = simHubMQTTPublisherPlugin.Settings.Topic,
                 Login = simHubMQTTPublisherPlugin.Settings.Login,
-                Password = simHubMQTTPublisherPlugin.Settings.Password
+                Password = simHubMQTTPublisherPlugin.Settings.Password,
+                UserId = simHubMQTTPublisherPlugin.UserSettings.UserId,
             };
 
             this.DataContext = Model;

@@ -12,10 +12,11 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="300" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
@@ -35,7 +36,10 @@
                 <Label Grid.Row="3">MQTT Topic</Label>
                 <TextBox Margin="4" Grid.Row="3" Grid.Column="1" Text="{Binding Path=Topic}"></TextBox>
 
-                <styles:SHButtonPrimary Margin="4"  Grid.Row="4" Click="Apply_Settings">Apply setting</styles:SHButtonPrimary>
+                <Label Grid.Row="4">User ID (readonly)</Label>
+                <TextBox Margin="4" Grid.Row="4" Grid.Column="1" Text="{Binding Path=UserId}" IsReadOnly="true"></TextBox>
+
+                <styles:SHButtonPrimary Margin="4"  Grid.Row="5" Click="Apply_Settings">Apply setting</styles:SHButtonPrimary>
             </Grid>
         </styles:SHSection>
     </Grid>

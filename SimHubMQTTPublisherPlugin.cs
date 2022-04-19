@@ -1,13 +1,10 @@
 ﻿using GameReaderCommon;
 using MQTTnet;
 using MQTTnet.Client;
-using MQTTnet.Client.Connecting;
-using MQTTnet.Client.Disconnecting;
 using MQTTnet.Client.Options;
 using Newtonsoft.Json;
 using SimHub.MQTTPublisher.Settings;
 using SimHub.Plugins;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
@@ -20,6 +17,9 @@ namespace SimHub.MQTTPublisher
     public class SimHubMQTTPublisherPlugin : IPlugin, IDataPlugin, IWPFSettingsV2
     {
         public SimHubMQTTPublisherPluginSettings Settings;
+
+        public SimHubMQTTPublisherPluginUserSettings UserSettings { get; private set; }
+
         private MqttFactory mqttFactory;
         private IMqttClient mqttClient;
 
@@ -53,7 +53,7 @@ namespace SimHub.MQTTPublisher
             {
                 var applicationMessage = new MqttApplicationMessageBuilder()
                .WithTopic(Settings.Topic)
-               .WithPayload(JsonConvert.SerializeObject(new Payload.PayloadRoot(data)))
+               .WithPayload(JsonConvert.SerializeObject(new Payload.PayloadRoot(data, UserSettings)))
                .Build();
 
                 Task.Run(async () => await mqttClient.PublishAsync(applicationMessage, CancellationToken.None)).Wait();
@@ -69,6 +69,7 @@ namespace SimHub.MQTTPublisher
         {
             // Save settings
             this.SaveCommonSettings("GeneralSettings", Settings);
+            this.SaveCommonSettings("UserSettings", UserSettings);
             mqttClient.Dispose();
         }
 
@@ -94,6 +95,8 @@ namespace SimHub.MQTTPublisher
             // Load settings
             Settings = this.ReadCommonSettings<SimHubMQTTPublisherPluginSettings>("GeneralSettings", () => new SimHubMQTTPublisherPluginSettings());
 
+            UserSettings = this.ReadCommonSettings<SimHubMQTTPublisherPluginUserSettings>("UserSettings", () => new SimHubMQTTPublisherPluginUserSettings());
+
             this.mqttFactory = new MqttFactory();
 
             CreateMQTTClient();
@@ -108,11 +111,10 @@ namespace SimHub.MQTTPublisher
                .WithCredentials(Settings.Login, Settings.Password)
                .Build();
 
-
             newmqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
 
             var oldMqttClient = this.mqttClient;
-            
+
             mqttClient = newmqttClient;
 
             if (oldMqttClient != null)

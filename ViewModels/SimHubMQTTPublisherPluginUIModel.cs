@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace SimHub.MQTTPublisher.ViewModels
@@ -14,6 +15,8 @@ namespace SimHub.MQTTPublisher.ViewModels
         private string _login;
 
         private string _password;
+
+        private Guid _UserId;
 
         public string Server
         {
@@ -51,6 +54,16 @@ namespace SimHub.MQTTPublisher.ViewModels
             set
             {
                 _password = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Guid UserId
+        {
+            get => _UserId;
+            set
+            {
+                _UserId = value;
                 OnPropertyChanged();
             }
         }
