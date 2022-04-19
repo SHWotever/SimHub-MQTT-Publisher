@@ -4,8 +4,6 @@ namespace SimHub.MQTTPublisher.Payload
 {
     public class CarState
     {
-        private GameData data;
-
         public CarState(GameData data)
         {
             mSpeed = data.NewData.SpeedKmh;

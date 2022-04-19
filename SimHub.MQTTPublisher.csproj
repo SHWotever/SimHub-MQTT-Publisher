@@ -82,6 +82,9 @@
     <Compile Include="Payload\PayloadRoot.cs" />
     <Compile Include="Payload\MotionAndDeviceRelated.cs" />
     <Compile Include="Payload\VehicleInformation.cs" />
+    <Compile Include="Settings\SimHubMQTTPublisherPluginUI.xaml.cs">
+      <DependentUpon>SimHubMQTTPublisherPluginUI.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SimHubMQTTPublisherPlugin.cs" />
     <Compile Include="SimHubMQTTPublisherPluginSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,12 +93,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\SimHubMQTTPublisherPluginUIModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Properties\DesignTimeResources.xaml" Condition="'$(DesignTime)'=='true' OR ('$(SolutionPath)'!='' AND Exists('$(SolutionPath)') AND '$(BuildingInsideVisualStudio)'!='true' AND '$(BuildingInsideExpressionBlend)'!='true')">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Page Include="Settings\SimHubMQTTPublisherPluginUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +118,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "c:\Program Files (x86)\SimHub\$(ProjectName).dll"

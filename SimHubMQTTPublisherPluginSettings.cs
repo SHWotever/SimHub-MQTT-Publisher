@@ -5,12 +5,12 @@
     /// </summary>
     public class SimHubMQTTPublisherPluginSettings
     {
-        public string Server = "localhost";
+        public string Server { get; set; } = "localhost";
 
-        public string Topic = "racing";
+        public string Topic { get; set; } = "racing";
 
-        public string Login = "admin";
+        public string Login { get; set; } = "admin";
 
-        public string Password = "admin";
+        public string Password { get; set; } = "admin";
     }
 }

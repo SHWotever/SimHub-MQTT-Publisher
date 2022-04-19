@@ -1,9 +1,13 @@
 ﻿using GameReaderCommon;
 using MQTTnet;
 using MQTTnet.Client;
+using MQTTnet.Client.Connecting;
+using MQTTnet.Client.Disconnecting;
 using MQTTnet.Client.Options;
 using Newtonsoft.Json;
+using SimHub.MQTTPublisher.Settings;
 using SimHub.Plugins;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
@@ -45,7 +49,6 @@ namespace SimHub.MQTTPublisher
         /// <param name="data">Current game data, including current and previous data frame.</param>
         public void DataUpdate(PluginManager pluginManager, ref GameData data)
         {
-            // Define the value of our property (declared in init)
             if (data.GameRunning)
             {
                 var applicationMessage = new MqttApplicationMessageBuilder()
@@ -76,7 +79,7 @@ namespace SimHub.MQTTPublisher
         /// <returns></returns>
         public System.Windows.Controls.Control GetWPFSettingsControl(PluginManager pluginManager)
         {
-            return null;
+            return new SimHubMQTTPublisherPluginUI(this);
         }
 
         /// <summary>
@@ -93,14 +96,29 @@ namespace SimHub.MQTTPublisher
 
             this.mqttFactory = new MqttFactory();
 
-            mqttClient = mqttFactory.CreateMqttClient();
+            CreateMQTTClient();
+        }
+
+        internal void CreateMQTTClient()
+        {
+            var newmqttClient = mqttFactory.CreateMqttClient();
 
             var mqttClientOptions = new MqttClientOptionsBuilder()
                .WithTcpServer(Settings.Server)
                .WithCredentials(Settings.Login, Settings.Password)
                .Build();
 
-            mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
+
+            newmqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
+
+            var oldMqttClient = this.mqttClient;
+            
+            mqttClient = newmqttClient;
+
+            if (oldMqttClient != null)
+            {
+                oldMqttClient.Dispose();
+            }
         }
     }
 }
