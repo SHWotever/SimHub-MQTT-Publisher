@@ -12,7 +12,7 @@ namespace SimHub.MQTTPublisher.Payload
         
         public PayloadRoot(GameData data, SimHubMQTTPublisherPluginUserSettings userSettings)
         {
-            time = DateTimeOffset.Now.ToUnixTimeSeconds();
+            time = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             vehicleInformation = new VehicleInformation(data, userSettings);
             carState = new CarState(data);
             motionAndDeviceRelated = new MotionAndDeviceRelated(data);
