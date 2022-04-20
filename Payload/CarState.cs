@@ -6,20 +6,19 @@ namespace SimHub.MQTTPublisher.Payload
     {
         public CarState(GameData data)
         {
-            mSpeed = data.NewData.SpeedKmh;
-            mRpm = data.NewData.Rpms;
-            mClutch = data.NewData.Clutch;
-            mThrottle = data.NewData.Throttle;
-            mBrake = data.NewData.Brake;
-            mGear = data.NewData.Gear;
+            SpeedKmh = data.NewData.SpeedKmh;
+            Rpms = data.NewData.Rpms;
+            Clutch = data.NewData.Clutch;
+            Throttle = data.NewData.Throttle;
+            Brake = data.NewData.Brake;
+            Gear = data.NewData.Gear;
         }
 
-        public double mSpeed { get; set; }
-        public double mRpm { get; set; }
-        public double mBrake { get; set; }
-        public double mThrottle { get; set; }
-        public double mClutch { get; set; }
-        public double mSteering { get; set; }
-        public string mGear { get; set; }
+        public double SpeedKmh { get; set; }
+        public double Rpms { get; set; }
+        public double Brake { get; set; }
+        public double Throttle { get; set; }
+        public double Clutch { get; set; }
+        public string Gear { get; set; }
     }
 }

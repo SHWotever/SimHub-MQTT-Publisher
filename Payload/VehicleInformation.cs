@@ -4,17 +4,14 @@ namespace SimHub.MQTTPublisher.Payload
 {
     public class VehicleInformation
     {
-        public VehicleInformation(GameData data, SimHubMQTTPublisherPluginUserSettings userSettings)
+        public VehicleInformation(GameData data)
         {
-            this.mCarName = data.NewData.CarModel;
-            this.mCarClassName = data.NewData.CarClass;
-            this.mUserUUID = userSettings.UserId.ToString();
+            this.CarModel = data.NewData.CarModel;
+            this.CarClass = data.NewData.CarClass;
         }
 
-        public string mCarName { get; set; }
+        public string CarModel { get; set; }
 
-        public string mCarClassName { get; set; }
-
-        public string mUserUUID { get; set; }
+        public string CarClass { get; set; }
     }
 }

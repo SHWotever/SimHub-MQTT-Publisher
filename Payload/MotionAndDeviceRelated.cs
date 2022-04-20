@@ -11,6 +11,6 @@ namespace SimHub.MQTTPublisher.Payload
             mOrientation = data.NewData.CarCoordinates.ToList();
         }
 
-        public List<double> mOrientation { get; set; }
+        public List<double> CarCoordinates { get; set; }
     }
 }
