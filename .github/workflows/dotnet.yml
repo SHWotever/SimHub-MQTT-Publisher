@@ -1,0 +1,33 @@
+name: .NET
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code.
+      uses: actions/checkout@v2
+          
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '3.1.x'
+
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - name: Setup Nuget
+      uses: Nuget/setup-nuget@v1.0.5
+
+    - name: Restore nuget packages
+      run: nuget restore SimHub.MQTTPublisher.sln
+    - name: Build
+      run: msbuild SimHub.MQTTPublisher.sln /p:Configuration=Release /p:PostBuildEvent=
