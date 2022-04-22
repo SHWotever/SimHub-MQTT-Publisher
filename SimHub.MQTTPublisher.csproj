@@ -81,6 +81,7 @@
     <Compile Include="Payload\CarState.cs" />
     <Compile Include="Payload\PayloadRoot.cs" />
     <Compile Include="Payload\MotionAndDeviceRelated.cs" />
+    <Compile Include="Payload\TrackInformation.cs" />
     <Compile Include="Payload\VehicleInformation.cs" />
     <Compile Include="Settings\SimHubMQTTPublisherPluginUI.xaml.cs">
       <DependentUpon>SimHubMQTTPublisherPluginUI.xaml</DependentUpon>
