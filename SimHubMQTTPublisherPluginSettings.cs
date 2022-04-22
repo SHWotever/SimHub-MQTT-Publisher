@@ -9,7 +9,7 @@ namespace SimHub.MQTTPublisher
     {
         public string Server { get; set; } = "localhost";
 
-        public string Topic { get; set; } = "racing";
+        public string Topic { get; set; } = "racing/driver_name";
 
         public string Login { get; set; } = "admin";
 
