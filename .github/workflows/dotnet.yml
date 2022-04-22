@@ -37,5 +37,5 @@ jobs:
       with:
         name: release-artifact
         path: 
-          bin/Release/MQTTnet.dll
-          bin/Release/SimHub.MQTTPublisher.dll
+          bin\Release\MQTTnet.dll
+          bin\Release\SimHub.MQTTPublisher.dll
