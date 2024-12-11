@@ -18,6 +18,8 @@ namespace SimHub.MQTTPublisher.Payload
             CurrentLapTime = data.NewData.CurrentLapTime.TotalMilliseconds;
             CarModel = data.NewData.CarModel;
             CarClass = data.NewData.CarClass;
+            EngineIgnitionOn = data.NewData.EngineIgnitionOn == 1;
+            EngineStarted = data.NewData.EngineStarted == 1;
         }
 
         public double SpeedKmh { get; set; }
@@ -30,5 +32,7 @@ namespace SimHub.MQTTPublisher.Payload
         public double CurrentLapTime { get; set; }
         public string CarModel { get; set; }
         public string CarClass { get; set; }
+        public bool EngineIgnitionOn { get; set; }
+        public bool EngineStarted { get; set; }
     }
 }
