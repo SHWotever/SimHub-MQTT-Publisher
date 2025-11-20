@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SimHub.MQTTPublisher</RootNamespace>
     <AssemblyName>SimHub.MQTTPublisher</AssemblyName>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -99,8 +99,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Payload\Car.cs" />
+    <Compile Include="Payload\FlagInformation.cs" />
     <Compile Include="Payload\PayloadRoot.cs" />
     <Compile Include="Payload\TrackInformation.cs" />
+    <Compile Include="Payload\VehicleInformation.cs" />
     <Compile Include="Settings\SimHubMQTTPublisherPluginUI.xaml.cs">
       <DependentUpon>SimHubMQTTPublisherPluginUI.xaml</DependentUpon>
     </Compile>
