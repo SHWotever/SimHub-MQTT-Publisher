@@ -10,10 +10,12 @@ namespace SimHub.MQTTPublisher.Payload
             time = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             carState = new Car(data);
             userId = userSettings.UserId.ToString();
+            flagData = new FlagInformation(data);
         }
 
         public long time { get; set; }
         public string userId { get; set; }
         public Car carState { get; set; }
+        public FlagInformation flagData { get; set; }
     }
 }
